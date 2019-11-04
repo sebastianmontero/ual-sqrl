@@ -1,2 +1,2 @@
-export * from './Scatter'
-export * from './ScatterUser'
+export * from './Sqrl'
+export * from './SqrlUser'

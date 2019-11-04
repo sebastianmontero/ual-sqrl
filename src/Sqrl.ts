@@ -1,18 +1,9 @@
-import ScatterJS from 'scatterjs-core'
-import ScatterEOS from 'scatterjs-plugin-eosjs2'
 import {
-  Authenticator, ButtonStyle, Chain,
-  UALError, UALErrorType, User
+  ButtonStyle,
 } from 'universal-authenticator-library'
-import { Name } from './interfaces'
-import { scatterLogo } from './scatterLogo'
-import { ScatterUser } from './ScatterUser'
-import { UALScatterError } from './UALScatterError'
-import { Scatter } from './Scatter'
-
-declare var window: any
-
 import { sqrlLogo } from './sqrlLogo'
+import { Name } from './interfaces'
+import { Scatter } from './Scatter'
 
 export class Sqrl extends Scatter {
 
@@ -23,5 +14,9 @@ export class Sqrl extends Scatter {
       textColor: 'white',
       background: '#625c52'
     }
+  }
+
+  public getOnboardingLink(): string {
+    return 'https://github.com/Telos-Foundation/Sqrl'
   }
 }
