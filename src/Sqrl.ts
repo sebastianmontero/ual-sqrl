@@ -17,6 +17,6 @@ export class Sqrl extends Scatter {
   }
 
   public getOnboardingLink(): string {
-    return 'https://github.com/Telos-Foundation/Sqrl'
+    return 'https://sqrlwallet.io/'
   }
 }
