@@ -1,7 +1,45 @@
 import { Api, JsonRpc } from 'eosjs'
 import * as ecc from 'eosjs-ecc'
+import { convertLegacyPublicKeys } from 'eosjs/dist/eosjs-numeric';
 import { Chain, SignTransactionResponse, UALErrorType, User } from 'universal-authenticator-library'
 import { UALScatterError } from './UALScatterError'
+import { cosignerInfo } from './interfaces'
+
+
+class CosignAuthorityProvider {
+  private rpc : JsonRpc
+  private cosigner : string
+  private per : string
+
+  constructor(rpc : JsonRpc, cosigner : string, per : string) {
+    this.rpc = rpc
+    this.cosigner = cosigner;
+    this.per = per
+  }
+
+  async getRequiredKeys(args) {
+    const { transaction } = args;
+
+    transaction.actions.forEach((action, ti) => {
+      action.authorization.forEach((auth, ai) => {
+        if (
+          auth.actor === this.cosigner
+          && auth.permission === this.per
+        ) {
+            delete transaction.actions[ti].authorization;
+        }
+      })
+    });
+
+    console.log(transaction)
+
+    return convertLegacyPublicKeys((await this.rpc.fetch('/v1/chain/get_required_keys', {
+      transaction,
+      available_keys: args.availableKeys,
+    })).required_keys);
+  }
+}
+
 
 export class ScatterUser extends User {
   private api: Api
@@ -13,6 +51,7 @@ export class ScatterUser extends User {
   constructor(
     private chain: Chain,
     private scatter: any,
+    private cosigner: cosignerInfo,
   ) {
     super()
     const rpcEndpoint = this.chain.rpcEndpoints[0]
@@ -26,7 +65,9 @@ export class ScatterUser extends User {
       port: rpcEndpoint.port,
     }
     const rpc = this.rpc
-    this.api = this.scatter.eos(network, Api, { rpc, beta3: true })
+    console.log('this is the cosigner: ', this.cosigner.cosigner, ' and this is the permission: ', this.cosigner.permission)
+    this.api = this.scatter.eos(network, Api, { rpc, beta3: true });
+    this.api.authorityProvider = new CosignAuthorityProvider(this.rpc, this.cosigner.cosigner, this.cosigner.permission);
   }
 
   public async signTransaction(
@@ -38,7 +79,6 @@ export class ScatterUser extends User {
         transaction,
         { broadcast, blocksBehind, expireSeconds }
       )
-
       return this.returnEosjsTransaction(broadcast, completedTransaction)
     } catch (e) {
       throw new UALScatterError(
