@@ -3,7 +3,7 @@ import * as ecc from 'eosjs-ecc'
 import { convertLegacyPublicKeys } from 'eosjs/dist/eosjs-numeric';
 import { Chain, SignTransactionResponse, UALErrorType, User } from 'universal-authenticator-library'
 import { UALScatterError } from './UALScatterError'
-import { cosignerInfo } from './interfaces'
+// import { cosignerInfo } from './interfaces'
 
 
 class CosignAuthorityProvider {
@@ -21,7 +21,7 @@ class CosignAuthorityProvider {
     const { transaction } = args;
 
     transaction.actions.forEach((action, ti) => {
-      action.authorization.forEach((auth, ai) => {
+      action.authorization.forEach((auth) => {
         if (
           auth.actor === this.cosigner
           && auth.permission === this.per
@@ -30,8 +30,6 @@ class CosignAuthorityProvider {
         }
       })
     });
-
-    console.log(transaction)
 
     return convertLegacyPublicKeys((await this.rpc.fetch('/v1/chain/get_required_keys', {
       transaction,
@@ -51,7 +49,7 @@ export class ScatterUser extends User {
   constructor(
     private chain: Chain,
     private scatter: any,
-    private cosigner: cosignerInfo,
+    private cosigner: any,
   ) {
     super()
     const rpcEndpoint = this.chain.rpcEndpoints[0]
@@ -65,9 +63,10 @@ export class ScatterUser extends User {
       port: rpcEndpoint.port,
     }
     const rpc = this.rpc
-    console.log('this is the cosigner: ', this.cosigner.cosigner, ' and this is the permission: ', this.cosigner.permission)
     this.api = this.scatter.eos(network, Api, { rpc, beta3: true });
-    this.api.authorityProvider = new CosignAuthorityProvider(this.rpc, this.cosigner.cosigner, this.cosigner.permission);
+
+    if(this.cosigner)
+      this.api.authorityProvider = new CosignAuthorityProvider(this.rpc, this.cosigner.cosigner, this.cosigner.permission);
   }
 
   public async signTransaction(

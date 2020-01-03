@@ -4,7 +4,7 @@ import {
   Authenticator, ButtonStyle, Chain,
   UALError, UALErrorType, User
 } from 'universal-authenticator-library'
-import { Name, cosignerInfo } from './interfaces'
+import { Name } from './interfaces'
 import { scatterLogo } from './scatterLogo'
 import { ScatterUser } from './ScatterUser'
 import { UALScatterError } from './UALScatterError'
@@ -17,7 +17,7 @@ export class Scatter extends Authenticator {
   private appName: string
   private scatterIsLoading: boolean = false
   private initError: UALError | null = null
-  private cosigner: cosignerInfo
+  private cosigner: any
 
   /**
    * Scatter Constructor.
@@ -29,10 +29,17 @@ export class Scatter extends Authenticator {
     super(chains)
     if (options && options.appName) {
       this.appName = options.appName
-      this.cosigner = {
-        cosigner: options.cosigner,
-        permission: options.permission
+
+      if(options.cosigner && options.permission){
+        this.cosigner = {
+          cosigner: options.cosigner,
+          permission: options.permission
+        }  
       }
+      else{
+        this.cosigner = null
+      }
+      
     } else {
       throw new UALScatterError('Scatter requires the appName property to be set on the `options` argument.',
         UALErrorType.Initialization,
