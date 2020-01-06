@@ -1,6 +1,6 @@
 export const Name: string = 'Sqrl'
 
-export interface cosignerInfo {
+export interface Cosigner {
 	cosigner: string
 	permission: string
 }

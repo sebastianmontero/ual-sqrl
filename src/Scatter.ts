@@ -30,16 +30,10 @@ export class Scatter extends Authenticator {
     if (options && options.appName) {
       this.appName = options.appName
 
-      if(options.cosigner && options.permission){
-        this.cosigner = {
-          cosigner: options.cosigner,
-          permission: options.permission
-        }  
+      if (options.cosigner) {
+        this.cosigner = options.cosigner;
       }
-      else{
-        this.cosigner = null
-      }
-      
+
     } else {
       throw new UALScatterError('Scatter requires the appName property to be set on the `options` argument.',
         UALErrorType.Initialization,
