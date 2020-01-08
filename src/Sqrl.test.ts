@@ -1,8 +1,8 @@
 import { Chain, RpcEndpoint, UALErrorType } from 'universal-authenticator-library'
 import ScatterJS from 'scatterjs-core'
 import { Name } from './interfaces'
-import { Scatter } from './Scatter'
-import { UALScatterError } from './UALScatterError'
+import { Scatter } from '@smontero/ual-scatter'
+import { UALScatterError } from './UALSqrlError'
 
 declare var window: any
 

@@ -1,5 +1,5 @@
 import { Chain, RpcEndpoint, UALError, UALErrorType } from 'universal-authenticator-library'
-import { ScatterUser } from './ScatterUser'
+import { ScatterUser } from '@smontero/ual-scatter'
 
 const endpoint: RpcEndpoint = {
   protocol: 'https',
@@ -20,7 +20,7 @@ describe('ScatterUser', () => {
   let user
 
   beforeEach(() => {
-    user = new ScatterUser(chain, scatter)
+    user = new ScatterUser(chain, scatter, undefined)
   })
 
   describe('getAccountName', () => {
