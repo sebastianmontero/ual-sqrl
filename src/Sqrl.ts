@@ -3,7 +3,7 @@ import {
 } from 'universal-authenticator-library'
 import { sqrlLogo } from './sqrlLogo'
 import { Name } from './interfaces'
-import { Scatter } from './Scatter'
+import { Scatter } from '@smontero/ual-scatter'
 
 export class Sqrl extends Scatter {
 
