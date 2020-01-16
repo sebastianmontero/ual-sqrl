@@ -312,6 +312,18 @@
   resolved "https://registry.yarnpkg.com/@sellside/emitter/-/emitter-1.2.1.tgz#0dd839c30cdf01087f4dc63613503da6bcdf5f1e"
   integrity sha512-P1rUad4vDnp4d5HB7NEJ/MDf4zg3pM2Q8ZXJ2xgGkGo5yckyDn56YPAvUGH+1VsOud5dbli8MZu14j/EcNZCGw==
 
+"@smontero/ual-scatter@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@smontero/ual-scatter/-/ual-scatter-0.1.10.tgz#7c1586c054427846d787919e5e59c58175c00649"
+  integrity sha512-2ZUwaL0+QrPIz3nxuYXXaluv4FtOCeLx5xdnAdf5x1FwU4VTYSumW7F9GvBmfq+e0fZEpB5IlkMrEwfEf6MLMQ==
+  dependencies:
+    eos-cosigner-lib "^1.0.1"
+    eosjs "20.0.0"
+    eosjs-ecc "4.0.4"
+    scatterjs-core "2.7.17"
+    scatterjs-plugin-eosjs2 "^1.5.0"
+    universal-authenticator-library "0.1.4"
+
 "@types/babel__core@^7.1.0":
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.3.tgz#e441ea7df63cd080dfcd02ab199e6d16a735fc30"
@@ -376,6 +388,11 @@
   integrity sha512-jcDDXdjTcrQzdN06+TSVsPPqxvsZA/5QkYfIZlq1JMw7FdP5AZylbOc+6B/cuDurctRe+MziUMtQ3xQdrbjqyQ==
   dependencies:
     "@types/jest-diff" "*"
+
+"@types/node@^13.1.4":
+  version "13.1.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.1.5.tgz#4d5efc52a1d3e45d13e5ec9f911cbc5b089ccaec"
+  integrity sha512-wupvfmtbqRJzjCm1H2diy7wo31Gn1OzvqoxCfQuKM9eSecogzP0WTlrjdq7cf7jgSO2ZX6hxwgRPR8Wt7FA22g==
 
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
@@ -1114,6 +1131,14 @@ end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
+eos-cosigner-lib@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/eos-cosigner-lib/-/eos-cosigner-lib-1.0.1.tgz#f759e38f90977f53dd0c6f848c602e692fdd8a38"
+  integrity sha512-0F1rIp27fvOfNdIOfUwk2zSQgcKTH31msfdEILijFAnwSdKS5TC7kuiIYTiWYtTaPcbqZ8/NJxlN5Bqg7cLIpg==
+  dependencies:
+    "@types/node" "^13.1.4"
+    eosjs "^20.0.0"
+
 eosjs-ecc@4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/eosjs-ecc/-/eosjs-ecc-4.0.4.tgz#431450f30a6f73088ff5d7ba1ebdfe967a5ca4ab"
@@ -1128,7 +1153,7 @@ eosjs-ecc@4.0.4:
     ecurve "^1.0.5"
     randombytes "^2.0.5"
 
-eosjs@20.0.0:
+eosjs@20.0.0, eosjs@^20.0.0:
   version "20.0.0"
   resolved "https://registry.yarnpkg.com/eosjs/-/eosjs-20.0.0.tgz#43940abfe15cd191ce4027d60294036e914613e9"
   integrity sha512-Ak9CPtZgCFayUmq43X3Nsn4v67lkLfSzEdTUfMk1XAWA5s4HRn7lBTeTeDCzJ/rggi+dZ170VeJwc5T3gPk4HQ==

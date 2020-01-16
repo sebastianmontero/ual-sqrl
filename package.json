@@ -1,6 +1,6 @@
 {
   "name": "@smontero/ual-sqrl",
-  "version": "0.1.8",
+  "version": "0.1.21",
   "main": "dist/index.js",
   "license": "MIT",
   "author": {
@@ -21,7 +21,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@smontero/ual-scatter": "^0.1.9",
+    "@smontero/ual-scatter": "^0.1.10",
     "eosjs": "20.0.0",
     "eosjs-ecc": "4.0.4",
     "scatterjs-core": "2.7.17",
