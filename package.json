@@ -1,6 +1,6 @@
 {
   "name": "@smontero/ual-sqrl",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "main": "dist/index.js",
   "license": "MIT",
   "author": {
